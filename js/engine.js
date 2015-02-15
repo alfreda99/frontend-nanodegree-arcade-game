@@ -80,7 +80,7 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        // checkCollisions();
+        checkCollisions();
     }
 
     /* This is called by the update function  and loops through all of the
@@ -95,6 +95,26 @@ var Engine = (function(global) {
             enemy.update(dt);
         });
         player.update();
+    }
+
+    /* This is called by the update function  and loops through all of the
+     * objects within the allEnemies array and determines if their
+     * position intersects with the players position.  If they do intersect,
+     * it reset the player to starting position.
+     */
+    function checkCollisions() {
+        var currentEnemy;
+        var currentPlayer;
+        allEnemies.forEach(function(enemy) {
+            currentEnemy = enemy;
+            currentPlayer = player
+
+            if( currentEnemy.column.position == player.column.position && 
+                currentEnemy.row.position == player.row.position) {
+                player.row.reset(400,6);
+            }
+        });
+        player.render();
     }
 
     /* This function initially draws the "game level", it will then call
@@ -168,11 +188,13 @@ var Engine = (function(global) {
      * all of these images are properly loaded our game will start.
      */
     Resources.load([
+
         'images/stone-block.png',
         'images/water-block.png',
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png'
+
     ]);
     Resources.onReady(init);
 
