@@ -109,9 +109,9 @@ var Engine = (function(global) {
             currentEnemy = enemy;
             currentPlayer = player
 
-            if( currentEnemy.column.position == player.column.position && 
+            if( currentEnemy.column.position == player.column.position &&
                 currentEnemy.row.position == player.row.position) {
-                player.row.reset(400,6);
+                player.row.reset(404,6);
             }
         });
         player.render();

@@ -29,7 +29,7 @@ Enemy.prototype.update = function(dt) {
      */
     if( this.column.x > ctx.canvas.width ) {
         this.speed = Math.random() * (200 - 80) + 80;
-        this.column.reset( 1, 1 );
+        this.column.reset( -60, 1 );
     }
 }
 
@@ -46,7 +46,7 @@ Enemy.prototype.render = function() {
  */
 var Player = function() {
     this.sprite = 'images/char-boy.png';
-    this.row = new Row(400);
+    this.row = new Row(404);
     this.column = new Column(200);
 }
 
@@ -55,7 +55,7 @@ Player.prototype.update = function() {
     // Determines if the player has reached the water (first row)
     // and if so, resets the player to the starting position
     if(this.row.position == 1) {
-        this.row.reset(400, 6);
+        this.row.reset(404, 6);
         this.column.reset(200, 3);
     }
 }
@@ -122,7 +122,7 @@ Row.prototype.getPosition = function(y) {
         if( bottomY > topOfRow && bottomY < bottomOfRow ) {
             position = i;
        }
-    };
+    }
 
     return position;
 }
@@ -208,10 +208,10 @@ Column.prototype.reset = function(x, position) {
 
 
 // Instantiate multiple Enemy objects passing in different coordiates and speeds.
-var enemy1 = new Enemy(50, 60, 100);
-var enemy2 = new Enemy(100, 145, 150);
-var enemy3 = new Enemy(1, 230, 180);
-var enemy4 = new Enemy(1, 60, 80);
+var enemy1 = new Enemy(-60, 60, 100);
+var enemy2 = new Enemy(-60, 145, 150);
+var enemy3 = new Enemy(-60, 230, 180);
+var enemy4 = new Enemy(-60, 60, 80);
 
 // Place all enemy objects in an array
 var allEnemies = [enemy1, enemy2, enemy3, enemy4];
